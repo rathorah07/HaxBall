@@ -41,10 +41,10 @@ GameWindow::GameWindow(QWidget *parent) :
     font.setBold(true);
     ui->clock->setFont(font);
     ui->glabel->hide();
-    bg.loadFromFile("bgsound.wav");
-    end.loadFromFile("endsound.wav");
-    hit.loadFromFile("hit.wav");
-    goal.loadFromFile("goal.wav");
+    bg.loadFromFile("../assets/bgsound.wav");
+    end.loadFromFile("../assets/endsound.wav");
+    hit.loadFromFile("../assets/hit.wav");
+    goal.loadFromFile("../assets/goal.wav");
     bgsound.setBuffer(bg);
     bgsound.setLoop(true);
     hitsound.setBuffer(hit);
@@ -261,7 +261,7 @@ void GameWindow::on_Message_returnPressed()
 {
     QString message_string = ui->Message->text();
     ui->Message->setText("\0");
-    
+
     message_string = QString::fromStdString(playername) + " :  " + message_string;
     vecmessages.push_back(message_string);
     my_message = message_string.toStdString();
