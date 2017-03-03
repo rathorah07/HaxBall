@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>haxball_big.png</file>
+        <file>redwins.png</file>
+        <file>bluewins.png</file>
+        <file>bluescore.png</file>
+        <file>redscore.png</file>
+        <file>draw.jpg</file>
+        <file>disconnect.jpg</file>
+    </qresource>
+    <qresource prefix="/sound"/>
+</RCC>
