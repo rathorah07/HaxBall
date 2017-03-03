@@ -13,10 +13,10 @@ Program can be built using default make targets which are discussed.
 
 II. Make targets
 ---------------
-make  compiles the source code
-make DEBUG executes the application with DEBUG_MODE. It's a mode with verbose output at each stage.
-make clean  cleans all the temporary and the executables
-make game ishost=a myport=b hostport=c hostip=d myip=e
+make  				## compiles the source code
+make host port=port_num 	## run the game as host
+make player myport=myport_num hostport=hostport_num hostip=hostip_addr myip=myip_addr
+make clean  			##cleans all the temporary and the executables
 
 III How to Use
 ---------------
