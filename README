@@ -13,19 +13,14 @@ Program can be built using default make targets which are discussed.
 
 II. Make targets
 ---------------
-make  compiles the source code
-make DEBUG executes the application with DEBUG_MODE. It's a mode with verbose output at each stage.
-make clean  cleans all the temporary and the executables
-make game ishost=a myport=b hostport=c hostip=d myip=e
+make  				## compiles the source code
+make host port=port_num 	## run the game as host
+make player myport=myport_num hostport=hostport_num hostip=hostip_addr myip=myip_addr
+make clean  			##cleans all the temporary and the executables
 
 III How to Use
 ---------------
-On make client server=x port=y , if the user  is a host, the QT application opens up where the user enters her desired name and and chooses to play single player or multiplayer. If she chooses single player, lobby will open up which allows her to choose the team for herself and the computer bot. It has a "Start Game" button on the top whcih launches the game in another window with a digital timer running. If she chooses multiplyer, lobby will open up where she waits for other players into the lobby. Once, enterred, she can decide the players in a team. Users can also chat with themselves using the "Chat Room" provided in the bottom of the lobby. The host also has an option of adding an AI bot in the multiplayer game and choosing it's team. If a user starts the application as a player(not as a host), QT application opens up where she can add her name and choose between single player and multi player modes. Choosing single playe launches the lobby as described above where as if she chooses multi player, the application waits till a secure connection with the host is established else the application shuts down. Any user can leave the game by just closing the window.  
-
-IV Links
----------
-The link to the nultimedia files used in the project can be found at : 
-						iitd.info/cop290/project3
+On make client port=y , if the user  is a host, the QT application opens up where the user enters her desired name and and chooses to play single player or multiplayer. If she chooses single player, lobby will open up which allows her to choose the team for herself and the computer bot. It has a "Start Game" button on the top whcih launches the game in another window with a digital timer running. If she chooses multiplyer, lobby will open up where she waits for other players into the lobby. Once, enterred, she can decide the players in a team. Users can also chat with themselves using the "Chat Room" provided in the bottom of the lobby. The host also has an option of adding an AI bot in the multiplayer game and choosing it's team. If a user starts the application as a player(not as a host), QT application opens up where she can add her name and choose between single player and multi player modes. Choosing single playe launches the lobby as described above where as if she chooses multi player, the application waits till a secure connection with the host is established else the application shuts down. Any user can leave the game by just closing the window.  
 
 ---------------------------------------------------------------------------------------------------------------------------------------------
 All rights reserved. Project Designed for Assignment 3 COP290 : Design Practices in Computer Science.
