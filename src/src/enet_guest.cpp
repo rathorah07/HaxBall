@@ -51,7 +51,7 @@ int connected=0;
 int post_connect(int num)
 {
   string s = "test paket";
-    cout << s << endl;
+    // cout << s << endl;
     packet = enet_packet_create((char *)s.c_str(),s.length(),
             ENET_PACKET_FLAG_RELIABLE);
        enet_peer_send(peer,0,packet);
@@ -59,7 +59,7 @@ int post_connect(int num)
 
      enet_host_flush(server);
    // while(client_connect==false)
-     
+
     sleep(2);
 
      if(1) //if (enet_host_service(client, &event, 10000) > 0 && event.type == ENET_EVENT_TYPE_CONNECT)
@@ -71,7 +71,7 @@ int post_connect(int num)
         connecthash[num]=1;
         connected++;
 
-        return 1;      
+        return 1;
     } else {
       enet_peer_reset(peer);
       printf("Could not connect to %d.\n", num);
@@ -83,7 +83,7 @@ int post_connect(int num)
 int handle2(string input)
 {
     input = input.erase(0,1);
-  
+
     vector<peerdata> temp = readhost_firstpacket(input);
 
     gamers.clear();
@@ -94,7 +94,7 @@ int handle2(string input)
     }
 
     my_num = find_peerpos(playername)+1;
-    cout << "My_num is" << my_num << " " << gamers.size() << endl;
+    // cout << "My_num is" << my_num << " " << gamers.size() << endl;
     connecthash[my_num]=1;
     connecthash[1]=1;
     if(my_num==gamers.size())
@@ -105,13 +105,13 @@ int handle2(string input)
       return 0;
     }
 
-    cout << "Reached this checkpoint" << endl;
+    // cout << "Reached this checkpoint" << endl;
 
     for(int i=0;i<gamers.size();i++)
     {
         if(connecthash[gamers[i].peernum]==0)
         {
-            cout << "Peernum" << gamers[i].peernum << endl;
+            // cout << "Peernum" << gamers[i].peernum << endl;
            enet_address_set_host(&address, (char *)(gamers[i].peerip).c_str());
            address.port = (gamers[i].peerport);
            peer = enet_host_connect(server, &address, 5, 0);
@@ -136,7 +136,7 @@ int handle4(string input)
 {
 
     input = input.erase(0,1);
-  
+
     vector<peerdata> temp = readpacket_dragdrop(input);
 
     gamers.clear();
@@ -161,12 +161,12 @@ int handle5()
   num_players=gamers.size();
 
   init_system();
-  cout<<"initializing"<<endl;
+  // cout<<"initializing"<<endl;
 
-  for(int i=0;i<Positions.size();i++)
-  {
-      cout<<Positions[i].x << "  " <<Positions[i].y<<endl;
-  }
+  // for(int i=0;i<Positions.size();i++)
+  // {
+  //     cout<<Positions[i].x << "  " <<Positions[i].y<<endl;
+  // }
 
 
   for(int i=0;i<=num_players;i++)
@@ -196,17 +196,17 @@ static int waitgamedata()
            //     cout << i << " " << connecthash[i] << endl;
                 return 0;
                 }
-            }  
+            }
           }
 
          temp_pos[my_num] = Positions[my_num];
          temp_pos.swap(Positions);
-         
-         
+
+
         // cout << "Drawn game" << endl;
           emit game_signal.draw();
           //usleep(3000);
-            
+
             memset(packethash,0,sizeof(packethash));
           for(int i=0;i<=num_players;i++)
             temp_pos[i]=Positions[i];
@@ -227,7 +227,7 @@ int handlegamedata(string input)
 
         packethash[hashnum]=1;
         packethash[my_num]=1;
-        temp_pos[hashnum]=p;    
+        temp_pos[hashnum]=p;
         waitgamedata();
 
 }
@@ -261,7 +261,7 @@ int handle_guest_packet(string input)
         case '1' :
             //handle1(input);
             break;
-        
+
         case '2' :
             // host first packet;
             handle2(input);
@@ -279,7 +279,7 @@ int handle_guest_packet(string input)
 
          case '5' :
          handle5();
-         break;  
+         break;
 
 
         case '7' :
@@ -294,7 +294,7 @@ int handle_guest_packet(string input)
 
         case '#' :
           handlehash(input);
-          break;  
+          break;
        /* case '4' :
             // Game state Packet
             input =input.erase(0,1);
@@ -331,16 +331,16 @@ int be_guest(int myport,int hostport,string ip,string myip)
 
 
 
-  
+
 
 	   string x=  ip ;
 
-		
+
 	  address.host = ENET_HOST_ANY;
     address.port = myport;
 
 
-    server = enet_host_create (&address /* the address to bind the server host to */, 
+    server = enet_host_create (&address /* the address to bind the server host to */,
                              32      /* allow up to 32 clients and/or outgoing connections */,
                               2      /* allow up to 2 channels to be used, 0 and 1 */,
                               0      /* assume any amount of incoming bandwidth */,
@@ -350,7 +350,7 @@ int be_guest(int myport,int hostport,string ip,string myip)
 
 
     if (server == NULL) {
-    
+
           printf("Could not start server.\n");
           return 0;
     }
@@ -361,23 +361,23 @@ int be_guest(int myport,int hostport,string ip,string myip)
 	   enet_address_set_host(&address, (char *)x.c_str());
      address.port = hostport;
 
-	
-	   
-	  
+
+
+
 	   peer = enet_host_connect(server, &address, 2, 0);
-	 	
-	 	
-	 
-	  if (peer == NULL) 
+
+
+
+	  if (peer == NULL)
 	  {
 	    printf("Could not connect to server\n");
 	    return 0;
 	  }
 
 
-	
 
-	
+
+
 
 	 if (enet_host_service(server, &event, 1) > 0 && event.type == ENET_EVENT_TYPE_CONNECT)
 	  {
@@ -390,14 +390,14 @@ int be_guest(int myport,int hostport,string ip,string myip)
 	    connected++;
 
 
-       
+
 
 	    string S = writepeer_Firstpacket(playername,myip,myportnum);
-        	   
+
 	    packet = enet_packet_create((char *)S.c_str(), S.length(),
           ENET_PACKET_FLAG_RELIABLE);
 	    enet_peer_send(peer, 0, packet);
-	    cout << "PACKET SENT" << endl;
+	    // cout << "PACKET SENT" << endl;
 
 
         int ran = (int)event.peer->address.host   ;
@@ -406,22 +406,22 @@ int be_guest(int myport,int hostport,string ip,string myip)
         IP[2] = ran&0xff; ran>>=8;
         IP[3] = ran&0xff;
         ptr = new string;
-     
+
         *ptr=makeipstring();
       //  cout << *ptr  << endl;
         event.peer->data  = (char *)(ptr->c_str());
        // cout << "XYZ" << endl;
-	  	
+
 	  } else {
 	    enet_peer_reset(peer);
 	    printf("Could not connect to %s.\n", "HOST");
 	    return 0;
 	  }
 
-	   
+
      	while(1)
 	{
-	  // cout << "INFDAFS" << endl;	
+	  // cout << "INFDAFS" << endl;
         while(enet_host_service(server,&event,10)>0)
 		{
 
@@ -433,23 +433,23 @@ int be_guest(int myport,int hostport,string ip,string myip)
             {
               string ip = (const char*)event.peer->data;
              int discopos = findip_pos(ip) ;
-             cout << "Discopos is " << discopos << endl;
+            //  cout << "Discopos is " << discopos << endl;
              connecthash[discopos]=0;
 
              event.peer -> data = NULL;
              connected--;
 
            }
-          
+
           break;
 
 				case ENET_EVENT_TYPE_CONNECT:
-        
+
         {
           num_players++;
         cout  << "Connect event" << endl;
           client_connect=true;
-				printf ("A new client connected from %x:%u.\n", 
+				printf ("A new client connected from %x:%u.\n",
                 event.peer -> address.host,
                 event.peer -> address.port);
 				connected++;
@@ -459,7 +459,7 @@ int be_guest(int myport,int hostport,string ip,string myip)
         IP[2] = ran&0xff; ran>>=8;
         IP[3] = ran&0xff;
         ptr = new string;
-     
+
         *ptr=makeipstring();
        // cout << *ptr  << endl;
         event.peer->data  = (char *)(ptr->c_str());
@@ -468,23 +468,23 @@ int be_guest(int myport,int hostport,string ip,string myip)
 
 
         break; // Nothing to do until the client actually sends a packet
-				
+
 				case ENET_EVENT_TYPE_RECEIVE:
 
 				{
-             
-                cout << "RECEIVED" << endl;
+
+                // cout << "RECEIVED" << endl;
         		string packet_message = (char *)event.packet->data;
         	 //cout << packet_message << endl;
 
-        		
+
         		handle_guest_packet(packet_message);
-        	
+
           }
         		 break;
-				
-			
-       
+
+
+
 
 			}
 
@@ -494,7 +494,7 @@ int be_guest(int myport,int hostport,string ip,string myip)
      {
             //       usleep(5000);
             sendmydata=false;
-            cout<<"sending gamestate doubt"<<endl;
+            // cout<<"sending gamestate doubt"<<endl;
             //cout<<"Position vector is " <<endl;
             /*for(int i=0;i<Positions.size();i++)
             {
@@ -506,9 +506,9 @@ int be_guest(int myport,int hostport,string ip,string myip)
             enet_host_broadcast(server , 0, packet);
             //cout << "Brodacasted" << x << endl;
             //cout << "PACKET SENT"  << endl;
-          
+
          }
-         
+
          if( mess == true)
          {
             mess = false;

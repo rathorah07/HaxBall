@@ -87,11 +87,11 @@ void Teamjoin::on_StartButton_clicked()
     {
         init_system();
     }
-    
-    for(int i=0;i<gamers.size();i++)
-    {
-        cout<<gamers[i].peername << " " <<gamers[i].peerteam <<" " <<gamers[i].peernum<<endl;
-    }
+
+    // for(int i=0;i<gamers.size();i++)
+    // {
+    //     cout<<gamers[i].peername << " " <<gamers[i].peerteam <<" " <<gamers[i].peernum<<endl;
+    // }
 
     game_mode = true;
     game = new GameWindow(this);
@@ -114,7 +114,7 @@ void Teamjoin::update()
 
 void Teamjoin::addmessage(QString input)
 {
-    cout<<"addmessage"<<endl;
+    // cout<<"addmessage"<<endl;
     vecmessages.push_back(input);
     ui->chatbox->addItem(input);
     counter = counter+1;

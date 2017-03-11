@@ -93,7 +93,7 @@ void init_system(){
         player_number = 1;
     }
     num_riders = gamers.size();
-	cout << "Num_Riders "  << num_riders << endl;
+	// cout << "Num_Riders "  << num_riders << endl;
 	players.resize(num_riders + 1);
 	Positions.resize(num_riders + 1);
     temp_pos.resize(num_riders+1);
@@ -117,7 +117,7 @@ void init_system(){
 			players[i].color[1] = 0.0;
 			players[i].color[2] = 0.0;
 			left++;
-            cout<<"left"<<left<<endl;
+            // cout<<"left"<<left<<endl;
 		}
         else if(players[i].team == 1){
 			players[i].pos[0] = rightp/2;
@@ -126,7 +126,7 @@ void init_system(){
 			players[i].color[1] = 0.0;
 			players[i].color[2] = 0.2 + 0.2*right;
             right++;
-            cout<<"right"<<right<<endl;
+            // cout<<"right"<<right<<endl;
 		}
 
 		Positions[i].x = players[i].pos[0];
